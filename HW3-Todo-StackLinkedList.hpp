@@ -6,6 +6,7 @@
 struct TodoItem
 {
 	std::string todo;
+	TodoItem *next;
 };
 
 class TodoStackLinkedList
@@ -13,7 +14,6 @@ class TodoStackLinkedList
   public:
 	TodoStackLinkedList();
 	bool isEmpty();
-	bool isFull();
 	void push(std::string todoItem);
 	void pop();
 	TodoItem* peek();

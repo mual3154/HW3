@@ -6,6 +6,7 @@
 struct TodoItem
 {
 	std::string todo;
+	TodoItem *next;
 };
 
 class TodoQueueLinkedList
@@ -13,7 +14,6 @@ class TodoQueueLinkedList
   public:
 	TodoQueueLinkedList();
 	bool isEmpty();
-	bool isFull();
 	void enqueue(std::string todoItem);
 	void dequeue();
 	TodoItem* peek();
