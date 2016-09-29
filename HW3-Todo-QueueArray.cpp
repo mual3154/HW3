@@ -22,7 +22,7 @@ bool TodoQueueArray::isFull(){
 	int size = 0;
 	int start = queueFront;
 	while(start != queueEnd){
-		if(start >  MAX_QUEUE_SIZE){
+		if(start >=  4){
 			start = 0;
 		}
 		size++;
@@ -43,12 +43,13 @@ void TodoQueueArray::enqueue(string todoItem){
 	bool full = isFull();
 	TodoItem* tmp = new TodoItem;
 	tmp->todo = todoItem;
+	cout << "Queueing: " << tmp->todo << endl;
 	if(empty){
 		queueFront = 0;
 		queueEnd = 0;
 		queue[0] = tmp;
 	}
-	else if(full){
+	else if(queueFront == queueEnd+1 || queueFront == 0 && queueEnd == 4){
 		cout << "Queue full, cannot add new todo item" << endl;
 	}
 	else{
@@ -59,7 +60,6 @@ void TodoQueueArray::enqueue(string todoItem){
 			queueEnd++;
 		}
 		queue[queueEnd] = tmp;
-		cout << "Queueing: " << tmp->todo << endl;
 	}
 	tmp = NULL;
 	delete tmp;
@@ -70,12 +70,16 @@ void TodoQueueArray::dequeue(){
 	if(empty){
 		cout << "Queue empty, cannot dequeue an item" << endl;
 	}
-	else if(queueFront == queueEnd){
-		queueFront = queueEnd = -1;
-		cout << "Queue empty, cannot dequeue an item" << endl;
+	else if(queueEnd == queueFront)
+	{
+		int tmp = queueFront;
+		cout << "dequeueing: " << queue[tmp]->todo << endl;
+		queueFront = -1;
+		queueEnd=-1;
 	}
 	else{
 		int tmp = queueFront;
+		cout << "dequeueing: " << queue[tmp]->todo << endl;
 		queueFront++;
 		queue[tmp] = NULL;
 	}

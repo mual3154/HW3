@@ -16,6 +16,9 @@ int main(){
 	m.enqueue("Do laundry");
 	m.enqueue("buy detergent");
 	m.enqueue("take a shit");
+	m.enqueue("Scotty");
+	m.dequeue();
+	m.dequeue();
 	m.dequeue();
 	TodoItem* theitem = m.peek();
 	cout << theitem->todo <<endl;
